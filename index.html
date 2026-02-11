@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>视觉诗篇 · 双色域</title>
+  <!-- 仅保留字体架构，不显示任何文字 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* 彻底无文字——所有内容均以图形/色彩/动效传达 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0b0e14;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* 主宇宙——主题色 #89AAD9 (柔雾蓝) + #C7C688 (鼠尾草绿) */
+    .dimension {
+      position: relative;
+      width: 100vw;
+      min-height: 100vh;
+      background: radial-gradient(circle at 30% 40%, #1a2538, #0c101a);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      isolation: isolate;
+    }
+
+    /* ---------- 双色光晕层 · 主题色的呼吸 ---------- */
+    .aura {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* #89AAD9 —— 静谧蓝光 */
+    .aura-blue {
+      position: absolute;
+      top: -10%;
+      left: -5%;
+      width: 70%;
+      height: 70%;
+      background: radial-gradient(circle at 20% 30%, rgba(137, 170, 217, 0.35), transparent 70%);
+      filter: blur(70px);
+      animation: driftBlue 18s infinite alternate ease-in-out;
+    }
+
+    /* #C7C688 —— 暖茸绿光 */
+    .aura-green {
+      position: absolute;
+      bottom: -15%;
+      right: -5%;
+      width: 80%;
+      height: 80%;
+      background: radial-gradient(circle at 70% 80%, rgba(199, 198, 136, 0.3), transparent 75%);
+      filter: blur(80px);
+      animation: driftGreen 20s infinite alternate ease-in-out;
+    }
+
+    /* 第三种融合光——两种主题色交织 */
+    .aura-merge {
+      position: absolute;
+      top: 40%;
+      left: 30%;
+      width: 90%;
+      height: 90%;
+      background: radial-gradient(circle, rgba(137, 170, 217, 0.12) 0%, rgba(199, 198, 136, 0.12) 50%, transparent 80%);
+      filter: blur(100px);
+      animation: pulseMerge 25s infinite alternate;
+    }
+
+    @keyframes driftBlue {
+      0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+      100% { transform: translate(8%, 12%) scale(1.2); opacity: 0.9; }
+    }
+    @keyframes driftGreen {
+      0% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+      100% { transform: translate(-10%, -8%) scale(1.25); opacity: 0.8; }
+    }
+    @keyframes pulseMerge {
+      0% { opacity: 0.2; transform: scale(1); }
+      100% { opacity: 0.45; transform: scale(1.3); }
+    }
+
+    /* ---------- 纯粹图形 · 无文字抽象徽标 ---------- */
+    .symbol {
+      position: relative;
+      z-index: 15;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem 5rem;
+      max-width: 1100px;
+      margin: 1rem 0;
+    }
+
+    /* 主图腾 —— 双色交错环 */
+    .ring-master {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(0 0 25px rgba(137,170,217,0.5));
+      animation: levitateGroup 12s infinite;
+    }
+
+    .ring-blue {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 3px solid #89AAD9;
+      border-radius: 50%;
+      box-shadow: 0 0 35px #89AAD9, 0 0 15px rgba(137,170,217,0.6) inset;
+      clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+      animation: rotateBlue 20s linear infinite;
+    }
+
+    .ring-green {
+      position: absolute;
+      width: 90%;
+      height: 90%;
+      border: 3px solid #C7C688;
+      border-radius: 50%;
+      box-shadow: 0 0 40px #C7C688, 0 0 15px rgba(199,198,136,0.5) inset;
+      clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+      animation: rotateGreen 18s reverse linear infinite;
+    }
+
+    .core {
+      width: 35px;
+      height: 35px;
+      background: radial-gradient(circle at 30% 30%, #fff, #89AAD9);
+      border-radius: 50%;
+      box-shadow: 0 0 50px #C7C688, 0 0 90px #89AAD9;
+      animation: pulseCore 4s infinite alternate;
+    }
+
+    @keyframes rotateBlue {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes rotateGreen {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+    @keyframes pulseCore {
+      0% { opacity: 0.7; transform: scale(0.9); box-shadow: 0 0 50px #C7C688, 0 0 90px #89AAD9; }
+      100% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 80px #89AAD9, 0 0 140px #C7C688; }
+    }
+    @keyframes levitateGroup {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-18px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* ---------- 抽象几何卡片 · 纯色块与动效 ---------- */
+    .grid-silent {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.2rem;
+      justify-content: center;
+      align-items: stretch;
+      position: relative;
+      z-index: 20;
+      margin: 2.5rem 0;
+    }
+
+    .tile {
+      width: 200px;
+      height: 240px;
+      background: rgba(18, 25, 36, 0.55);
+      backdrop-filter: blur(12px);
+      border-radius: 40px 12px 40px 12px;
+      border: 1.5px solid rgba(137, 170, 217, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.8rem;
+      transition: all 0.45s cubic-bezier(0.19, 1, 0.3, 1);
+      box-shadow: 0 20px 30px -15px rgba(0,0,0,0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* 主题色块面 —— 无文字，仅有色彩构成 */
+    .tile::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, #89AAD9, #C7C688, #89AAD9);
+      opacity: 0.7;
+    }
+
+    .color-shape {
+      width: 90px;
+      height: 90px;
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      background: radial-gradient(circle at 40% 50%, #89AAD9, #5d7ca3);
+      box-shadow: 0 0 40px #89AAD9, 0 10px 20px rgba(0,0,0,0.4);
+      animation: morphBlob 8s infinite alternate;
+    }
+
+    .color-shape.second {
+      background: radial-gradient(circle at 60% 50%, #C7C688, #9e9e5e);
+      box-shadow: 0 0 45px #C7C688;
+      border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%;
+      animation: morphBlob2 9s infinite alternate;
+    }
+
+    .color-shape.third {
+      background: linear-gradient(145deg, #89AAD9 30%, #C7C688 90%);
+      box-shadow: 0 0 50px #b6b981;
+      border-radius: 40% 60% 30% 70% / 50% 40% 60% 50%;
+      animation: morphBlob3 10s infinite alternate;
+    }
+
+    @keyframes morphBlob {
+      0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: rotate(0deg); }
+      50% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; transform: rotate(10deg); }
+      100% { border-radius: 70% 30% 30% 70% / 60% 70% 30% 40%; transform: rotate(-5deg); }
+    }
+    @keyframes morphBlob2 {
+      0% { border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%; transform: scale(1); }
+      100% { border-radius: 40% 60% 60% 40% / 40% 60% 40% 60%; transform: scale(1.1); }
+    }
+    @keyframes morphBlob3 {
+      0% { border-radius: 40% 60% 30% 70% / 50% 40% 60% 50%; }
+      100% { border-radius: 60% 40% 70% 30% / 30% 70% 30% 70%; }
+    }
+
+    .tile:hover {
+      transform: translateY(-12px) scale(1.02);
+      border-color: rgba(199, 198, 136, 0.7);
+      background: rgba(28, 38, 52, 0.75);
+      box-shadow: 0 28px 45px -10px #000, 0 0 0 2px rgba(137,170,217,0.25) inset;
+    }
+
+    .tile:hover .color-shape {
+      animation-duration: 3s;
+    }
+
+    /* 双色粒子 —— 只有色彩，没有文字 */
+    .particle-duo {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #89AAD9;
+      box-shadow: 0 0 25px #89AAD9, 0 0 45px #C7C688;
+      opacity: 0.5;
+      animation: floatDot 16s infinite alternate;
+    }
+
+    .dot:nth-child(1) { top: 20%; left: 15%; background: #C7C688; box-shadow: 0 0 30px #C7C688; width: 9px; height: 9px; animation-delay: 0s; }
+    .dot:nth-child(2) { top: 70%; left: 80%; background: #89AAD9; width: 7px; height: 7px; animation-delay: 2s; }
+    .dot:nth-child(3) { top: 45%; left: 40%; background: #C7C688; width: 11px; height: 11px; animation-delay: 3.5s; }
+    .dot:nth-child(4) { top: 85%; left: 25%; background: #89AAD9; width: 6px; height: 6px; animation-delay: 1.2s; }
+    .dot:nth-child(5) { top: 15%; left: 70%; background: #C7C688; width: 8px; height: 8px; animation-delay: 5s; }
+    .dot:nth-child(6) { top: 55%; left: 88%; background: #89AAD9; width: 10px; height: 10px; animation-delay: 0.8s; }
+    .dot:nth-child(7) { top: 30%; left: 55%; background: #C7C688; width: 5px; height: 5px; animation-delay: 4.2s; }
+    .dot:nth-child(8) { top: 90%; left: 48%; background: #89AAD9; width: 7px; height: 7px; animation-delay: 2.7s; }
+
+    @keyframes floatDot {
+      0% { transform: translateY(0px) scale(0.8); opacity: 0.2; }
+      50% { transform: translateY(-35px) scale(1.3); opacity: 0.7; }
+      100% { transform: translateY(15px) scale(0.9); opacity: 0.3; }
+    }
+
+    /* 底部光带 —— 双色渐变，纯粹视觉 */
+    .horizon-bar {
+      position: relative;
+      z-index: 25;
+      width: 70%;
+      height: 2px;
+      margin-top: 3.5rem;
+      background: linear-gradient(90deg, transparent, #89AAD9, #C7C688, #89AAD9, transparent);
+      filter: blur(3px);
+      animation: scanline 6s infinite;
+    }
+
+    @keyframes scanline {
+      0% { opacity: 0.4; width: 60%; }
+      50% { opacity: 1; width: 85%; box-shadow: 0 0 30px #89AAD9, 0 0 20px #C7C688; }
+      100% { opacity: 0.4; width: 60%; }
+    }
+
+    /* 浮动几何体 —— 无文字徽章群 */
+    .floating-shapes {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 8;
+      pointer-events: none;
+    }
+
+    .shape-item {
+      position: absolute;
+      border: 2px solid rgba(137, 170, 217, 0.4);
+      transform: rotate(45deg);
+      box-shadow: 0 0 35px rgba(199, 198, 136, 0.3);
+      animation: shapeFloat 22s infinite alternate;
+    }
+
+    .shape-item:nth-child(1) {
+      width: 70px;
+      height: 70px;
+      top: 12%;
+      right: 8%;
+      border-color: #89AAD9;
+      border-radius: 20% 80% 50% 50% / 30% 40% 60% 70%;
+      animation-delay: -3s;
+    }
+    .shape-item:nth-child(2) {
+      width: 110px;
+      height: 110px;
+      bottom: 5%;
+      left: 3%;
+      border: 2px solid #C7C688;
+      border-radius: 70% 30% 60% 40% / 50% 60% 40% 50%;
+      transform: rotate(15deg);
+      animation-delay: -8s;
+    }
+    .shape-item:nth-child(3) {
+      width: 45px;
+      height: 45px;
+      top: 40%;
+      left: 12%;
+      border: 2px solid #89AAD9;
+      border-radius: 40% 60% 30% 70% / 40% 50% 50% 60%;
+      animation-delay: -1s;
+    }
+
+    @keyframes shapeFloat {
+      0% { transform: translateY(0) rotate(45deg) scale(1); opacity: 0.2; }
+      100% { transform: translateY(-40px) rotate(95deg) scale(1.1); opacity: 0.6; }
+    }
+
+    /* 确保任何地方都没有文本字符 —— 连伪元素content都彻底移除 */
+    .no-text {
+      font-size: 0;
+      color: transparent;
+    }
+
+    /* 最后的装饰——纯色记忆 */
+    .signature-band {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 60% 40%, #89AAD9, transparent 80%);
+      filter: blur(25px);
+      position: absolute;
+      bottom: 8%;
+      right: 12%;
+      z-index: 2;
+      opacity: 0.35;
+      animation: driftSign 19s infinite;
+    }
+
+    .signature-band.green {
+      background: radial-gradient(circle at 30% 70%, #C7C688, transparent 80%);
+      bottom: auto;
+      top: 5%;
+      left: 8%;
+      width: 180px;
+      height: 180px;
+      opacity: 0.3;
+    }
+
+    @keyframes driftSign {
+      0% { transform: scale(1) translate(0, 0); }
+      100% { transform: scale(1.3) translate(-25px, 15px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="dimension">
+
+    <!-- 双色光晕层：主题色#89AAD9 + #C7C688 融合呼吸 -->
+    <div class="aura">
+      <div class="aura-blue"></div>
+      <div class="aura-green"></div>
+      <div class="aura-merge"></div>
+    </div>
+
+    <!-- 抽象粒子系统 —— 仅用双色点阵 -->
+    <div class="particle-duo">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+
+    <!-- 纯图形大 emblem —— 无任何字母数字 -->
+    <div class="symbol">
+      <div class="ring-master">
+        <div class="ring-blue"></div>
+        <div class="ring-green"></div>
+        <div class="core"></div>
+      </div>
+    </div>
+
+    <!-- 三枚抽象色彩卡片 · 零文字，纯粹由主题色块构成 -->
+    <div class="grid-silent">
+      <div class="tile">
+        <div class="color-shape"></div>
+        <!-- 仅装饰性光点，不包含文字 -->
+        <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(137,170,217,0.2); box-shadow: 0 0 30px #89AAD9;"></div>
+      </div>
+      <div class="tile">
+        <div class="color-shape second"></div>
+        <div style="width: 30px; height: 30px; border-radius: 50%; background: rgba(199,198,136,0.25); box-shadow: 0 0 40px #C7C688;"></div>
+      </div>
+      <div class="tile">
+        <div class="color-shape third"></div>
+        <div style="width: 45px; height: 45px; border-radius: 40% 60% 30% 70% / 50% 40% 60% 50%; background: #89AAD9; opacity: 0.5; box-shadow: 0 0 35px #C7C688;"></div>
+      </div>
+    </div>
+
+    <!-- 水平光栅 —— 零文字，纯色彩动效 -->
+    <div class="horizon-bar"></div>
+
+    <!-- 额外抽象浮体，加强双色氛围 -->
+    <div class="floating-shapes">
+      <div class="shape-item"></div>
+      <div class="shape-item"></div>
+      <div class="shape-item"></div>
+    </div>
+
+    <!-- 超大光斑签名：主题色无处不在，但没有一个字符 -->
+    <div class="signature-band"></div>
+    <div class="signature-band green"></div>
+
+    <!-- 为了绝对无文字，移除所有content伪元素以及任何文本节点，此处无任何文字 -->
+  </div>
+
+  <!-- 无脚本 —— 纯CSS动效，连JS都省略以保证没有任何文本生成 -->
+</body>
+</html>
